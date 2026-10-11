@@ -1,0 +1,59 @@
+<section class="container section">
+    <div class="page-head">
+        <h1 id="pTitle">Profil</h1>
+        <dl class="profile-meta mt-3">
+            <div><dt>Szerepkör</dt><dd id="pRole">–</dd></div>
+            <div><dt>Regisztráció</dt><dd id="pReg">–</dd></div>
+            <div><dt>Utolsó belépés</dt><dd id="pLast">–</dd></div>
+            <div><dt>Belépések száma</dt><dd id="pCount">–</dd></div>
+        </dl>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="panel h-100">
+                <h2>Adataim</h2>
+                <div id="profileAlert"></div>
+                <form id="profileForm" novalidate>
+                    <div class="mb-3">
+                        <label for="pNameInput" class="form-label">Név</label>
+                        <input type="text" id="pNameInput" class="form-control" maxlength="100" required>
+                        <div class="invalid-feedback">Add meg a neved.</div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="pEmailInput" class="form-label">E-mail cím</label>
+                        <input type="email" id="pEmailInput" class="form-control" required>
+                        <div class="invalid-feedback">Adj meg egy érvényes e-mail címet.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adatok mentése</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel h-100">
+                <h2>Jelszó megváltoztatása</h2>
+                <div id="passwordAlert"></div>
+                <form id="passwordForm" novalidate>
+                    <div class="mb-3">
+                        <label for="pwOld" class="form-label">Jelenlegi jelszó</label>
+                        <input type="password" id="pwOld" class="form-control" autocomplete="current-password" required>
+                        <div class="invalid-feedback">Add meg a jelenlegi jelszavad.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pwNew" class="form-label">Új jelszó</label>
+                        <input type="password" id="pwNew" class="form-control" autocomplete="new-password" required>
+                        <div class="form-hint mt-1">Legalább 8 karakter, kis- és nagybetű, szám és egy speciális karakter: @ $ ! % * ? &amp;</div>
+                        <div class="invalid-feedback" id="pwNewFeedback">Az új jelszó nem felel meg a feltételeknek.</div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="pwConfirm" class="form-label">Új jelszó megerősítése</label>
+                        <input type="password" id="pwConfirm" class="form-control" autocomplete="new-password" required>
+                        <div class="invalid-feedback">A két jelszó nem egyezik.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Jelszó módosítása</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,123 @@
+<section class="container section">
+    <div class="page-head">
+        <h1>Kezelőpult</h1>
+        <p class="text-muted mb-0" id="dashSummary">Betöltés…</p>
+    </div>
+
+    <div class="toolbar">
+        <input type="search" id="dashSearch" class="form-control" placeholder="Keresés helyszínre, dátumra, típusra" aria-label="Keresés">
+        <button type="button" class="btn btn-primary" id="btnNew">Új előrejelzés</button>
+    </div>
+
+    <div class="table-wrap">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Dátum</th><th>Helyszín</th><th>Min.</th><th>Max.</th><th>Időjárás</th>
+                        <th>Csapadék esélye</th><th>Szél</th><th></th>
+                    </tr>
+                </thead>
+                <tbody id="dashBody"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- létrehozás / szerkesztés -->
+<div class="modal fade" id="forecastModal" tabindex="-1" aria-labelledby="forecastModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <form id="forecastForm" novalidate>
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="forecastModalTitle">Új előrejelzés</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezár"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="forecastAlert"></div>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="fDate" class="form-label">Dátum</label>
+                            <input type="date" id="fDate" class="form-control" required>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="fLocation" class="form-label">Helyszín</label>
+                            <input type="text" id="fLocation" class="form-control" maxlength="100" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fTempMin" class="form-label">Minimum (°C)</label>
+                            <input type="number" id="fTempMin" class="form-control" step="0.1" min="-90" max="60" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fTempMax" class="form-label">Maximum (°C)</label>
+                            <input type="number" id="fTempMax" class="form-control" step="0.1" min="-90" max="60" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fType" class="form-label">Időjárás típusa</label>
+                            <input type="text" id="fType" class="form-control" list="typeList" maxlength="30" required>
+                            <datalist id="typeList">
+                                <option value="sunny">Napos</option>
+                                <option value="partly_cloudy">Részben felhős</option>
+                                <option value="cloudy">Felhős</option>
+                                <option value="rainy">Esős</option>
+                                <option value="stormy">Viharos</option>
+                                <option value="snowy">Havas</option>
+                                <option value="foggy">Ködös</option>
+                                <option value="windy">Szeles</option>
+                            </datalist>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fPrecip" class="form-label">Csapadék (mm)</label>
+                            <input type="number" id="fPrecip" class="form-control" step="0.1" min="0" max="1000">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fProb" class="form-label">Csapadék esélye (%)</label>
+                            <input type="number" id="fProb" class="form-control" step="1" min="0" max="100">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fHumidity" class="form-label">Páratartalom (%)</label>
+                            <input type="number" id="fHumidity" class="form-control" step="1" min="0" max="100">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fWind" class="form-label">Szélsebesség (km/h)</label>
+                            <input type="number" id="fWind" class="form-control" step="0.1" min="0" max="500">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fWindDir" class="form-label">Szélirány</label>
+                            <input type="text" id="fWindDir" class="form-control" maxlength="10" placeholder="pl. NY">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fPressure" class="form-label">Légnyomás (hPa)</label>
+                            <input type="number" id="fPressure" class="form-control" step="0.1" min="800" max="1100">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fUv" class="form-label">UV-index</label>
+                            <input type="number" id="fUv" class="form-control" step="0.1" min="0" max="20">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Mégse</button>
+                    <button type="submit" class="btn btn-primary" id="forecastSave">Mentés</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- törlés megerősítése -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h5" id="deleteTitle">Előrejelzés törlése</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezár"></button>
+            </div>
+            <div class="modal-body" id="deleteText"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Mégse</button>
+                <button type="button" class="btn btn-danger" id="deleteConfirm">Törlés</button>
+            </div>
+        </div>
+    </div>
+</div>

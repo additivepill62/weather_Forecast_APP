@@ -1,0 +1,26 @@
+<section class="container section">
+    <div class="auth-wrap">
+        <div class="page-head">
+            <h1>Bejelentkezés</h1>
+            <p class="text-muted mb-0">Jelentkezz be a részletes előrejelzésekért.</p>
+        </div>
+
+        <div class="panel">
+            <div id="loginAlert"></div>
+            <form id="loginForm" novalidate>
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">E-mail cím</label>
+                    <input type="email" id="loginEmail" class="form-control" autocomplete="email" required>
+                    <div class="invalid-feedback">Adj meg egy érvényes e-mail címet.</div>
+                </div>
+                <div class="mb-4">
+                    <label for="loginPassword" class="form-label">Jelszó</label>
+                    <input type="password" id="loginPassword" class="form-control" autocomplete="current-password" required>
+                    <div class="invalid-feedback">Add meg a jelszavad.</div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Bejelentkezés</button>
+            </form>
+        </div>
+        <p class="mt-3 text-muted">Még nincs fiókod? <a href="#/register">Regisztrálj</a>.</p>
+    </div>
+</section>

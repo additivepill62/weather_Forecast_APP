@@ -1,0 +1,40 @@
+<section class="container section">
+    <div class="page-head">
+        <h1>Felhasználók</h1>
+        <p class="text-muted mb-0" id="usersSummary">Betöltés…</p>
+    </div>
+
+    <div class="toolbar">
+        <input type="search" id="usersSearch" class="form-control" placeholder="Keresés névre vagy e-mailre" aria-label="Keresés">
+    </div>
+
+    <div class="table-wrap">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Név</th><th>E-mail</th><th>Szerepkör</th><th>Állapot</th>
+                        <th>Regisztráció</th><th>Utolsó belépés</th><th class="text-end">Belépések</th><th></th>
+                    </tr>
+                </thead>
+                <tbody id="usersBody"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="banModal" tabindex="-1" aria-labelledby="banTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h5" id="banTitle"></h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezár"></button>
+            </div>
+            <div class="modal-body" id="banText"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Mégse</button>
+                <button type="button" class="btn btn-primary" id="banConfirm"></button>
+            </div>
+        </div>
+    </div>
+</div>

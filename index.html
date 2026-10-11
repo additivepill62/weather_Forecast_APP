@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Légkör – időjárás-előrejelző</title>
+        <!-- A mentett téma beállítása a kirajzolás ELŐTT, hogy ne villanjon fel a világos téma -->
+        <script>
+        (function () {
+            var theme = null;
+            try { theme = localStorage.getItem('weatherTheme'); } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-bs-theme', theme);
+        })();
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md app-nav">
+            <div class="container">
+                <a class="navbar-brand" href="#/home">Légkör</a>
+                <button
+                    class="btn btn-outline-dark btn-sm theme-toggle ms-auto me-2 me-md-0 ms-md-3 order-md-last"
+                    type="button"
+                    id="themeToggle"
+                    aria-pressed="false"
+                    aria-label="Váltás sötét módra"
+                    title="Váltás sötét módra"
+                >
+                    <span aria-hidden="true">🌙</span>
+                </button>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navMenu"
+                    aria-controls="navMenu"
+                    aria-expanded="false"
+                    aria-label="Menü megnyitása"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav me-auto" id="navLinks"></ul>
+                    <ul class="navbar-nav ms-md-auto align-items-md-center" id="navUser"></ul>
+                </div>
+            </div>
+        </nav>
+        <!-- ide töltődnek be a views/ mappa oldalai -->
+        <main id="view" class="app-view"></main>
+        <footer class="app-footer">
+            <p class="text-center">
+                Bajai SZC Türr István Technikum - 13.a szoftverfejlesztő
+            </p>
+        </footer>
+        <div class="toast-container position-fixed top-0 end-0 p-3" id="toastBox"></div>
+        <!-- könyvtárak (te teszed be őket az assets/js mappába) -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/moment.js"></script>
+        <!-- opcionális: Chart.js (hőmérséklet-grafikon). Ha nem teszed be, a grafikon egyszerűen nem jelenik meg. -->
+        <script src="assets/js/chart.min.js"></script>
+        <!-- saját kód -->
+        <script src="controllers/messageCtrl.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script src="controllers/userCtrl.js"></script>
+        <script src="controllers/forecastCtrl.js"></script>
+        <script src="controllers/adminCtrl.js"></script>
+    </body>
+</html>

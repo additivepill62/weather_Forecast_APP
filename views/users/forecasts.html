@@ -1,0 +1,41 @@
+<section class="container section">
+    <div class="page-head">
+        <h1>Előrejelzések</h1>
+        <p class="text-muted mb-0">Kattints egy sorra a napi részletekért.</p>
+    </div>
+
+    <div class="filters mb-4">
+        <div>
+            <label for="fcDate" class="form-label">Nap</label>
+            <input type="date" id="fcDate" class="form-control">
+        </div>
+        <div class="grow">
+            <label for="fcLocation" class="form-label">Helyszín</label>
+            <input type="search" id="fcLocation" class="form-control" placeholder="Keress városra" autocomplete="off">
+        </div>
+        <button type="button" id="fcReset" class="btn btn-outline-dark">Szűrők törlése</button>
+    </div>
+
+    <div id="fcList" aria-live="polite"></div>
+
+    <!-- csak akkor jelenik meg, ha a Chart.js be van töltve -->
+    <div id="chartBox" class="chart-box d-none">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <h2 class="h5 m-0">Hőmérséklet alakulása</h2>
+            <select id="chartPlace" class="form-select w-auto" aria-label="Helyszín a grafikonhoz"></select>
+        </div>
+        <div class="chart-canvas"><canvas id="tempChart"></canvas></div>
+    </div>
+</section>
+
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h4" id="detailTitle"></h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezár"></button>
+            </div>
+            <div class="modal-body" id="detailBody"></div>
+        </div>
+    </div>
+</div>

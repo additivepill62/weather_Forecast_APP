@@ -1,0 +1,26 @@
+<section class="hero">
+    <div class="container">
+        <h1 class="hero-title">Milyen idő lesz?</h1>
+        <p class="hero-lead">Napi hőmérséklet-tartományok helyszínenként, egy pillantással.</p>
+
+        <div class="filters">
+            <div>
+                <label for="homeDate" class="form-label">Nap</label>
+                <input type="date" id="homeDate" class="form-control">
+            </div>
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-dark" id="homeToday">Ma</button>
+                <button type="button" class="btn btn-outline-dark" id="homeTomorrow">Holnap</button>
+            </div>
+            <div class="grow">
+                <label for="homeLocation" class="form-label">Helyszín</label>
+                <input type="search" id="homeLocation" class="form-control" placeholder="Keress városra" autocomplete="off">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container section">
+    <div id="homeList" aria-live="polite"></div>
+    <div id="homeCta" class="cta-box"></div>
+</section>
