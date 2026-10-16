@@ -149,7 +149,8 @@ const AdminCtrl = {
             }
             this.users = res.data
             const banned = this.users.filter(u => u.status == 0).length
-            $('usersSummary').textContent = this.users.length + ' felhasználó, ebből ' + banned + ' letiltva.'
+            const adminCount = this.users.filter(u => u.role == 'admin').length
+            $('usersSummary').textContent = this.users.length + ' felhasználó, ebből ' + banned + ' letiltva, '+adminCount  + ' admin'
             render()
         }
 
@@ -171,7 +172,7 @@ const AdminCtrl = {
                 return '<tr>' +
                     '<td class="fw-semibold">' + Utils.esc(u.name) + '</td>' +
                     '<td>' + Utils.esc(u.email) + '</td>' +
-                    '<td>' + (u.role === 'admin' ? '<span class="badge text-bg-dark">Admin</span>' : 'Felhasználó') + '</td>' +
+                    '<td>' + (u.role === 'admin' ? '<span class="badge text-bg-dark">Admin</span>' : '<span class="badge text-bg-dark">Felhasználó</span>') + '</td>' +
                     '<td>' + (active ? '<span class="badge text-bg-success">Aktív</span>' : '<span class="badge text-bg-danger">Letiltva</span>') + '</td>' +
                     '<td class="text-nowrap">' + Utils.date(u.reg) + '</td>' +
                     '<td class="text-nowrap">' + Utils.date(u.last, 'YYYY. MM. DD. HH:mm') + '</td>' +
