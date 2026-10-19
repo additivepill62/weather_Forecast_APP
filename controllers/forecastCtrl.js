@@ -48,7 +48,7 @@ const ForecastCtrl = {
     // ---------- KEZDŐLAP (vendég is látja) ----------
     initHome(){
         const dateEl = $('homeDate'), locEl = $('homeLocation')
-        dateEl.value = Utils.today()
+        dateEl.value = ''
 
         const load = async () => {
             const params = new URLSearchParams()

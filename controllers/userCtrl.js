@@ -32,6 +32,8 @@ const UserCtrl = {
             Session.set(user)
             Message.success('Üdv, ' + user.name + '!')
             location.hash = user.role === 'admin' ? '#/admin/dashboard' : '#/forecasts'
+
+            toggleAttributes()
         })
     },
 
@@ -168,4 +170,12 @@ const UserCtrl = {
             Message.success(Message.of(res))
         })
     }
+}
+function toggleAttributes() {
+                let picker= document.querySelector('homeDatePicker')
+            let today= document.querySelector('homeToday')
+            let tomorrow= document.querySelector('homeTomorrow')
+            picker.toggleAttribute("hidden")
+            today.toggleAttribute("hidden")
+            tomorrow.toggleAttribute("hidden")
 }
